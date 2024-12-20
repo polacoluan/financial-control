@@ -25,7 +25,8 @@ class UpdateCardAction extends ParentAction
     public function run(UpdateCardRequest $request): Card
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'card',
+            'description'
         ]);
 
         return $this->updateCardTask->run($data, $request->id);

@@ -22,7 +22,21 @@ class UpdateTypeRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'id' => 'required|exists:types,id',
+            'type' => 'required|string',
+            'description' => 'required|string',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'id.required' => 'O identificador de tipo é obrigatório',
+            'id.exists' => 'Nenhum registro encontrado',
+            'type.required' => 'O tipo é obrigatório',
+            'type.string' => 'O tipo deve ser do tipo texto',
+            'description.required' => 'A descrição do tipo é obrigatória',
+            'description.string' => 'A descrição do tipo deve ser do tipo texto'
         ];
     }
 

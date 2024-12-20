@@ -23,7 +23,8 @@ class CreateTypeAction extends ParentAction
     public function run(CreateTypeRequest $request): Type
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'type',
+            'description'
         ]);
 
         return $this->createTypeTask->run($data);

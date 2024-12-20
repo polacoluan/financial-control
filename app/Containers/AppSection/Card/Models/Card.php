@@ -7,7 +7,10 @@ use App\Ship\Parents\Models\Model as ParentModel;
 
 class Card extends ParentModel
 {
-    protected $fillable = ['card', 'description'];
+    protected $fillable = [
+        'card', 
+        'description'
+    ];
 
     public function expenses()
     {

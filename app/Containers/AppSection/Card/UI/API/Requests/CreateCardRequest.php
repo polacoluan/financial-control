@@ -11,18 +11,21 @@ class CreateCardRequest extends ParentRequest
         'roles' => null,
     ];
 
-    protected array $decode = [
-        // 'id',
-    ];
-
-    protected array $urlParameters = [
-        // 'id',
-    ];
-
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'card' => 'required:string',
+            'description' => 'required:string'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'card.required' => 'O cartão é obrigatório',
+            'card.string' => 'O cartão deve sert do tipo texto',
+            'description.required' => 'A descrição do cartão é obrigatória',
+            'description.string' => 'A descrição do cartão deve ser do tipo texto'
         ];
     }
 

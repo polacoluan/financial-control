@@ -23,7 +23,8 @@ class CreateCardAction extends ParentAction
     public function run(CreateCardRequest $request): Card
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'card',
+            'description'
         ]);
 
         return $this->createCardTask->run($data);

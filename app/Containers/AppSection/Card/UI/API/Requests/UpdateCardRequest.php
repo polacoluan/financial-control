@@ -22,7 +22,19 @@ class UpdateCardRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'id' => 'required|exists:cards,id',
+            'card' => 'string',
+            'description' => 'string'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'id.required' => 'O identificador do cartão é obrigatório',
+            'id.exists' => 'Registro não encontrado',
+            'card.string' => 'O cartão deve ser do tipo texto',
+            'description' => 'A descrição do cartão deve ser do tipo texto'
         ];
     }
 
