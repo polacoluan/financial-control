@@ -11,18 +11,21 @@ class CreateCategoryRequest extends ParentRequest
         'roles' => null,
     ];
 
-    protected array $decode = [
-        // 'id',
-    ];
-
-    protected array $urlParameters = [
-        // 'id',
-    ];
-
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'category' => 'required|string',
+            'description' => 'required|string'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'category.required' => 'A categoria é obrigatória',
+            'category.string' => 'A categoria deve ser do tipo texto',
+            'description.required' => 'A descrição da categoria é obrigatória',
+            'description.string' => 'A descrição deve ser do tipo texto'
         ];
     }
 

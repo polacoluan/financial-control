@@ -10,7 +10,7 @@ return new class() extends Migration {
         Schema::create('incomes', static function (Blueprint $table) {
             $table->id();
             $table->string('income');
-            $table->string('description');
+            $table->text('description');
             $table->double('amount');
             $table->date('date');
             $table->timestamps();

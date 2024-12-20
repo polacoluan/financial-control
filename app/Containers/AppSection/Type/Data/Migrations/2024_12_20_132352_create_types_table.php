@@ -10,7 +10,7 @@ return new class() extends Migration {
         Schema::create('types', static function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('description'); 
+            $table->text('description'); 
             $table->timestamps();
         });
     }

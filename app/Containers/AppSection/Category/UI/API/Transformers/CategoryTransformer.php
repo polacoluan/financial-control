@@ -16,6 +16,8 @@ class CategoryTransformer extends ParentTransformer
         return [
             'object' => $category->getResourceKey(),
             'id' => $category->getHashedKey(),
+            'category' => $category->category,
+            'description' => $category->description,
             'created_at' => $category->created_at,
             'updated_at' => $category->updated_at,
             'readable_created_at' => $category->created_at->diffForHumans(),

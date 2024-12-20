@@ -10,7 +10,7 @@ return new class() extends Migration {
         Schema::create('expenses', static function (Blueprint $table) {
             $table->id();
             $table->string('expense');
-            $table->string('description');
+            $table->text('desccolumn: ription');
             $table->double('amount');            
             $table->date('date');
             $table->integer('installments');

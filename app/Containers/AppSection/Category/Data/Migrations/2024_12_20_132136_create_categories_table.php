@@ -10,7 +10,7 @@ return new class() extends Migration {
         Schema::create('categories', static function (Blueprint $table) {
             $table->id();
             $table->string('category');
-            $table->string('description');   
+            $table->text('description');   
             $table->timestamps();
         });
     }

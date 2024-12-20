@@ -10,7 +10,7 @@ return new class() extends Migration {
         Schema::create('objectives', static function (Blueprint $table) {
             $table->id();
             $table->string('objective');
-            $table->string('description'); 
+            $table->text('description'); 
             $table->timestamps();
         });
     }

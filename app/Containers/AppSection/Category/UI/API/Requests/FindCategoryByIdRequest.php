@@ -22,7 +22,14 @@ class FindCategoryByIdRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'id' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'O identificador é obrigatório'
         ];
     }
 

@@ -25,7 +25,8 @@ class UpdateCategoryAction extends ParentAction
     public function run(UpdateCategoryRequest $request): Category
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'category',
+            'description',
         ]);
 
         return $this->updateCategoryTask->run($data, $request->id);

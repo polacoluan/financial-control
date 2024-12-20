@@ -2,8 +2,15 @@
 
 namespace App\Containers\AppSection\Card\Models;
 
+use App\Containers\AppSection\Expense\Models\Expense;
 use App\Ship\Parents\Models\Model as ParentModel;
 
 class Card extends ParentModel
 {
+    protected $fillable = ['card', 'description'];
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
 }
