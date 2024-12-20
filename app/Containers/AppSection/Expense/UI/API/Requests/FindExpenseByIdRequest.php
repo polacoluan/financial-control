@@ -22,8 +22,16 @@ class FindExpenseByIdRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'id' => 'required|exists:expenses,id',
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'id.exists' => 'Nenhum registro encontrado',
+            'id.required' => 'O identificador da despesa é obrigatório'
+        ];        
     }
 
     public function authorize(): bool

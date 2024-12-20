@@ -23,7 +23,14 @@ class CreateExpenseAction extends ParentAction
     public function run(CreateExpenseRequest $request): Expense
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'expense', 
+            'description', 
+            'amount', 
+            'date', 
+            'installments', 
+            'category_id', 
+            'type_id', 
+            'card_id'
         ]);
 
         return $this->createExpenseTask->run($data);
