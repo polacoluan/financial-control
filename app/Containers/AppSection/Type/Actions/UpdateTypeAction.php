@@ -25,7 +25,8 @@ class UpdateTypeAction extends ParentAction
     public function run(UpdateTypeRequest $request): Type
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            "type",
+            "description",
         ]);
 
         return $this->updateTypeTask->run($data, $request->id);
