@@ -25,6 +25,6 @@
 use App\Containers\AppSection\Income\UI\API\Controllers\DeleteIncomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::delete('incomes/{id}', DeleteIncomeController::class)
+Route::delete('income/{id}', DeleteIncomeController::class)
     ->middleware(['auth:api']);
 

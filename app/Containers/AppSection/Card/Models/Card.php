@@ -9,7 +9,8 @@ class Card extends ParentModel
 {
     protected $fillable = [
         'card', 
-        'description'
+        'description',
+        'is_default',
     ];
 
     public function expenses()

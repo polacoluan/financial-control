@@ -11,6 +11,8 @@ return new class() extends Migration {
             $table->id();
             $table->string('type');
             $table->text('description'); 
+            $table->boolean('is_default')->default(false); 
+            $table->boolean('installments')->default(false); 
             $table->timestamps();
         });
     }

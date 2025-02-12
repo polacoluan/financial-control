@@ -35,7 +35,7 @@ class CreateExpenseRequest extends ParentRequest
     {
         return [
             'expense.required' => 'A despesa é obrigatória',
-            'expense.string' => 'A desepesa deve ser do tipo texto',
+            'expense.string' => 'A despesa deve ser do tipo texto',
             'description.required' => 'A descrição da despesa é obrigatória',
             'description.string' => 'A descrição da despesa deve ser do tipo texto',
             'amoumt.required' => 'O valor é obrigatório',

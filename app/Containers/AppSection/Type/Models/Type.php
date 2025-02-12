@@ -7,7 +7,7 @@ use App\Ship\Parents\Models\Model as ParentModel;
 
 class Type extends ParentModel
 {
-    protected $fillable = ['type', 'description'];
+    protected $fillable = ['type', 'description', 'is_default', 'installments'];
 
     public function expenses()
     {

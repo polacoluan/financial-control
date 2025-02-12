@@ -14,8 +14,8 @@ class CreateCardRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'card' => 'required:string',
-            'description' => 'required:string'
+            'card' => 'required|string',
+            'description' => 'required|string'
         ];
     }
 

@@ -25,6 +25,6 @@
 use App\Containers\AppSection\Income\UI\API\Controllers\CreateIncomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('incomes', CreateIncomeController::class)
+Route::post('income', CreateIncomeController::class)
     ->middleware(['auth:api']);
 

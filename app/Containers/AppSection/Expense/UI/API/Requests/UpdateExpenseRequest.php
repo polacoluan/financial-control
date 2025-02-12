@@ -40,10 +40,10 @@ class UpdateExpenseRequest extends ParentRequest
     public function messages()
     {
         return [
-            'id.required' => 'O identificado da desepesa é obrigatório',
+            'id.required' => 'O identificador da despesa é obrigatório',
             'id.exists' => 'Nenhum registro encontrado',
             'expense.required' => 'A despesa é obrigatória',
-            'expense.string' => 'A desepesa deve ser do tipo texto',
+            'expense.string' => 'A despesa deve ser do tipo texto',
             'description.required' => 'A descrição da despesa é obrigatória',
             'description.string' => 'A descrição da despesa deve ser do tipo texto',
             'amoumt.required' => 'O valor é obrigatório',

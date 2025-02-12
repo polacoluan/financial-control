@@ -11,6 +11,7 @@ return new class() extends Migration {
             $table->id();
             $table->string('card');
             $table->text('description');
+            $table->boolean('is_default')->default(false); 
             $table->timestamps();
         });
     }

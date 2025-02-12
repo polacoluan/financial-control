@@ -25,6 +25,6 @@
 use App\Containers\AppSection\Income\UI\API\Controllers\FindIncomeByIdController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('incomes/{id}', FindIncomeByIdController::class)
+Route::get('income/{id}', FindIncomeByIdController::class)
     ->middleware(['auth:api']);
 

@@ -9,10 +9,10 @@ class TypeSeeder extends ParentSeeder
 {
     public function run(): void
     {
-        Type::create(["type" => "Crédito à vista", "description" => "Desepesas pagas à vista"]);
-        Type::create(["type" => "Débito", "description" => "Desepesas pagas no débito"]);
-        Type::create(["type" => "Financiamento", "description" => "Desepesas financiadas"]);
-        Type::create(["type" => "Parcelado", "description" => "Desepesas parceladas"]);
-        Type::create(["type" => "Pix", "description" => "Desepesas pagas pelo pix"]);
+        Type::create(["type" => "Crédito à vista", "description" => "despesas pagas à vista"]);
+        Type::create(["type" => "Débito", "description" => "despesas pagas no débito"]);
+        Type::create(["type" => "Financiamento", "description" => "despesas financiadas"]);
+        Type::create(["type" => "Parcelado", "description" => "despesas parceladas"]);
+        Type::create(["type" => "Pix", "description" => "despesas pagas pelo pix"]);
     }
 }
