@@ -16,6 +16,10 @@ class IncomeTransformer extends ParentTransformer
         return [
             'object' => $income->getResourceKey(),
             'id' => $income->getHashedKey(),
+            'income' => $income->income,
+            'description' => $income->description,
+            'amount' => $income->amount,
+            'date' => $income->date,
             'created_at' => $income->created_at,
             'updated_at' => $income->updated_at,
             'readable_created_at' => $income->created_at->diffForHumans(),
