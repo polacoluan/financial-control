@@ -25,6 +25,5 @@
 use App\Containers\AppSection\Chart\UI\API\Controllers\GetMoneySpentPerMonthController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('charts/money-spent-per-month/{month}', [GetMoneySpentPerMonthController::class, 'GetMoneySpentPerMonth'])
+Route::get('charts/money-spent-per-month/{year}/{month}', [GetMoneySpentPerMonthController::class, 'GetMoneySpentPerMonth'])
     ->middleware(['auth:api']);
-

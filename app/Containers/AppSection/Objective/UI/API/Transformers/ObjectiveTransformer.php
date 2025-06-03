@@ -14,8 +14,11 @@ class ObjectiveTransformer extends ParentTransformer
     public function transform(Objective $objective): array
     {
         return [
-            'object' => $objective->getResourceKey(),
             'id' => $objective->getHashedKey(),
+            'objective' => $objective->objective,
+            'description' => $objective->description,
+            'target_value' => $objective->target_value,
+            'saved_amount' => $objective->saved_amount,
             'created_at' => $objective->created_at,
             'updated_at' => $objective->updated_at,
             'readable_created_at' => $objective->created_at->diffForHumans(),

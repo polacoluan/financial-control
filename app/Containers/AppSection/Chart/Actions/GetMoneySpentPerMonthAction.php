@@ -5,6 +5,7 @@ namespace App\Containers\AppSection\Chart\Actions;
 use Apiato\Core\Exceptions\CoreInternalErrorException;
 use App\Containers\AppSection\Chart\UI\API\Requests\GetMoneySpentPerMonthRequest;
 use App\Containers\AppSection\Expense\Tasks\ListExpensesByMonthTask;
+use App\Containers\AppSection\Income\Tasks\ListIncomesByMonthTask;
 use App\Ship\Parents\Actions\Action as ParentAction;
 use Prettus\Repository\Exceptions\RepositoryException;
 
@@ -12,8 +13,8 @@ class GetMoneySpentPerMonthAction extends ParentAction
 {
     public function __construct(
         private readonly ListExpensesByMonthTask $listExpensesByMonthTask,
-    ) {
-    }
+        private readonly ListIncomesByMonthTask $listIncomesByMonthTask,
+    ) {}
 
     /**
      * @throws CoreInternalErrorException
@@ -21,9 +22,9 @@ class GetMoneySpentPerMonthAction extends ParentAction
      */
     public function run(GetMoneySpentPerMonthRequest $request): mixed
     {
-        $expenses = $this->listExpensesByMonthTask->run(1);
+        $expenses = $this->listExpensesByMonthTask->run($request->year, $request->month);
 
-        $totalAmount = 0;
+        $totalExpenses = 0;
         $categories = [];
         $types = [];
         $cards = [];
@@ -32,7 +33,7 @@ class GetMoneySpentPerMonthAction extends ParentAction
         foreach ($expenses as $expense) {
             $monthlyAmount = $expense->installments > 1 ? $expense->amount / $expense->installments : $expense->amount;
 
-            $totalAmount += $monthlyAmount;
+            $totalExpenses += $monthlyAmount;
 
             if (!isset($categories[$expense->category->category])) {
                 $categories[$expense->category->category] = 0;
@@ -55,8 +56,17 @@ class GetMoneySpentPerMonthAction extends ParentAction
             $dates[$expense->date] += $monthlyAmount;
         }
 
+        $totalIncomes = 0;
+        $incomes = $this->listIncomesByMonthTask->run($request->month);
+
+        foreach ($incomes as $income) {
+            $totalIncomes += $income->amount;
+        }
+
         return [
-            'totalAmount' => round($totalAmount, 2),
+            'totalExpenses' => round($totalExpenses, 2),
+            'totalIncomes' => round($totalIncomes, 2),
+            'total' => round($totalIncomes - $totalExpenses, 2),
             'categories' => array_map(fn($value) => round($value, 2), $categories),
             'types' => array_map(fn($value) => round($value, 2), $types),
             'cards' => array_map(fn($value) => round($value, 2), $cards),

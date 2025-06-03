@@ -16,7 +16,8 @@ class GetMoneySpentPerMonthRequest extends ParentRequest
     ];
 
     protected array $urlParameters = [
-        // 'id',
+        'year',
+        'month'
     ];
 
     public function rules(): array

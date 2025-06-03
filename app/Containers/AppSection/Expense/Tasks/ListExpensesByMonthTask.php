@@ -11,15 +11,14 @@ class ListExpensesByMonthTask extends ParentTask
 {
     public function __construct(
         private readonly ExpenseRepository $repository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws CoreInternalErrorException
      * @throws RepositoryException
      */
-    public function run($month): mixed
+    public function run($year, $month): mixed
     {
-        return $this->repository->whereMonth('date', $month)->get();
+        return $this->repository->whereYear('date', $year)->whereMonth('date', $month)->get();
     }
 }

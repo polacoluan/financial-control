@@ -13,8 +13,7 @@ class CreateObjectiveAction extends ParentAction
 {
     public function __construct(
         private readonly CreateObjectiveTask $createObjectiveTask,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws CreateResourceFailedException
@@ -23,7 +22,10 @@ class CreateObjectiveAction extends ParentAction
     public function run(CreateObjectiveRequest $request): Objective
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'objective',
+            'description',
+            'target_value',
+            'saved_amount',
         ]);
 
         return $this->createObjectiveTask->run($data);

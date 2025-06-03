@@ -22,7 +22,7 @@ class UpdateIncomeRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|exists:expenses,id',
+            'id' => 'required|exists:incomes,id',
             'income' => 'required|string',
             'description' => 'required|string',
             'amount' => 'required|numeric',
