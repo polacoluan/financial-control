@@ -10,29 +10,13 @@ class CategoryExpenseTransformer extends ParentTransformer
 
     protected array $availableIncludes = [];
 
-    public function transform(object $data): array
+    public function transform(object $category): array
     {
-        if (isset($data->id)) {
-            // This is a category object
-            return [
-                'id' => $data->id,
-                'name' => $data->name,
-                'total_expenses' => (float) $data->total_expenses,
-                'percentage' => round((float) $data->percentage, 2),
-            ];
-        }
-
-        // This is the main response object
         return [
-            'categories' => array_map(function ($category) {
-                return [
-                    'id' => $category->id,
-                    'name' => $category->name,
-                    'total_expenses' => (float) $category->total_expenses,
-                    'percentage' => round((float) $category->percentage, 2),
-                ];
-            }, $data->categories),
-            'total_expenses' => (float) $data->total_expenses,
+            'id' => $category->id,
+            'name' => $category->name,
+            'total_expenses' => (float) $category->total_expenses,
+            'percentage' => (int) $category->percentage,
         ];
     }
 }

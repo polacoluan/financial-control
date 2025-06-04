@@ -20,17 +20,19 @@ class GetTopCategoriesExpensesTask extends ParentTask
             ->whereYear('date', $year)
             ->sum('value') ?: 0;
 
-        // Then get the top 5 categories with their expenses
-        $categories = DB::table('categories')
+        // Get the top 5 categories with their expenses
+        return DB::table('categories')
             ->select([
                 'categories.id',
                 'categories.name',
                 DB::raw('COALESCE(SUM(expenses.value), 0) as total_expenses'),
-                DB::raw('CASE 
-                    WHEN ' . $totalExpenses . ' > 0 
-                    THEN (COALESCE(SUM(expenses.value), 0) / ' . $totalExpenses . ' * 100) 
-                    ELSE 0 
-                END as percentage')
+                DB::raw('CAST(
+                    CASE 
+                        WHEN ' . $totalExpenses . ' > 0 
+                        THEN (COALESCE(SUM(expenses.value), 0) / ' . $totalExpenses . ' * 100) 
+                        ELSE 0 
+                    END 
+                AS UNSIGNED) as percentage')
             ])
             ->leftJoin('expenses', function ($join) use ($month, $year) {
                 $join->on('expenses.category_id', '=', 'categories.id')
@@ -42,10 +44,5 @@ class GetTopCategoriesExpensesTask extends ParentTask
             ->limit(5)
             ->get()
             ->toArray();
-
-        return [
-            'categories' => $categories,
-            'total_expenses' => $totalExpenses
-        ];
     }
 }

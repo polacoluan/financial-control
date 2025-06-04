@@ -19,23 +19,20 @@
  * @apiSuccessExample  {json} Success-Response:
  * HTTP/1.1 200 OK
  * {
- *     "data": {
- *         "categories": [
- *             {
- *                 "id": "1",
- *                 "name": "Food",
- *                 "total_expenses": 1500.50,
- *                 "percentage": 45.25
- *             },
- *             {
- *                 "id": "2",
- *                 "name": "Transportation",
- *                 "total_expenses": 800.25,
- *                 "percentage": 24.15
- *             }
- *         ],
- *         "total_expenses": 3315.25
- *     }
+ *     "data": [
+ *         {
+ *             "id": "1",
+ *             "name": "Food",
+ *             "total_expenses": 1500.50,
+ *             "percentage": 45
+ *         },
+ *         {
+ *             "id": "2",
+ *             "name": "Transportation",
+ *             "total_expenses": 800.25,
+ *             "percentage": 24
+ *         }
+ *     ]
  * }
  */
 
