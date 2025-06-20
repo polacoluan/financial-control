@@ -13,10 +13,14 @@ class GetTopCategoriesExpensesController extends ApiController
     /**
      * @throws InvalidTransformerException
      */
-    public function __invoke(GetTopCategoriesExpensesRequest $request, GetTopCategoriesExpensesAction $action): array
+    public function __invoke(GetTopCategoriesExpensesRequest $request, GetTopCategoriesExpensesAction $action): mixed
     {
         $categories = $action->run($request);
 
-        return $this->transform($categories, CategoryExpenseTransformer::class);
+        return response()->json(
+            fractal()
+                ->collection($categories, new CategoryExpenseTransformer())
+                ->toArray()
+        );
     }
 }
