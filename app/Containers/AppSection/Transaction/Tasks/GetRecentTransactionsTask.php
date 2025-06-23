@@ -10,7 +10,23 @@ class GetRecentTransactionsTask extends ParentTask
     public function run(): mixed
     {
         return DB::table('expenses')
-            ->select('expense', 'amount')
+            ->select([
+                'expense as name',
+                'amount',
+                'date',
+                DB::raw("'expense' as transaction_type"),
+            ])
+            ->unionAll(
+                DB::table('incomes')
+                    ->select([
+                        'income as name',
+                        'amount',
+                        'date',
+                        DB::raw("'income' as transaction_type"),
+                    ])
+            )
+            ->orderByDesc('date')
+            ->limit(5)
             ->get();
     }
 }
