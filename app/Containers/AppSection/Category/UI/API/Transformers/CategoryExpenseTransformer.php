@@ -14,7 +14,7 @@ class CategoryExpenseTransformer extends ParentTransformer
     {
         return [
             'id' => $category->id,
-            'name' => $category->name,
+            'description' => $category->description,
             'total_expenses' => (float) $category->total_expenses,
             'percentage' => (int) $category->percentage,
         ];
