@@ -2,7 +2,6 @@
 
 namespace App\Containers\AppSection\Transaction\UI\API\Transformers;
 
-use App\Containers\AppSection\Transaction\Models\;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
 
 class TransactionTransformer extends ParentTransformer
@@ -11,15 +10,13 @@ class TransactionTransformer extends ParentTransformer
 
     protected array $availableIncludes = [];
 
-    public function transform( $): array
+    public function transform(object $transaction): array
     {
         return [
-            'object' => $->getResourceKey(),
-            'id' => $->getHashedKey(),
-            'created_at' => $->created_at,
-            'updated_at' => $->updated_at,
-            'readable_created_at' => $->created_at->diffForHumans(),
-            'readable_updated_at' => $->updated_at->diffForHumans(),
+            'name' => $transaction->name,
+            'amount' => (float) $transaction->amount,
+            'date' => $transaction->date,
+            'transaction_type' => $transaction->transaction_type,
         ];
     }
 }
