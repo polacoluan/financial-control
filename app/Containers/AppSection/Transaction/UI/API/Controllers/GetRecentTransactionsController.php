@@ -17,10 +17,14 @@ class GetRecentTransactionsController extends ApiController
      * @throws CoreInternalErrorException
      * @throws RepositoryException
      */
-    public function __invoke(GetRecentTransactionsRequest $request, GetRecentTransactionsAction $action): array
+    public function __invoke(GetRecentTransactionsRequest $request, GetRecentTransactionsAction $action): mixed
     {
         $transactions = $action->run($request);
 
-        return $this->transform($transactions, TransactionTransformer::class);
+        return response()->json(
+            fractal()
+                ->collection($transactions, new TransactionTransformer())
+                ->toArray()
+        );
     }
 }

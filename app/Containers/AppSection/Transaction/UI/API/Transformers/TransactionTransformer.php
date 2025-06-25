@@ -3,6 +3,7 @@
 namespace App\Containers\AppSection\Transaction\UI\API\Transformers;
 
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
+use Carbon\Carbon;
 
 class TransactionTransformer extends ParentTransformer
 {
@@ -15,7 +16,7 @@ class TransactionTransformer extends ParentTransformer
         return [
             'name' => $transaction->name,
             'amount' => (float) $transaction->amount,
-            'date' => $transaction->date,
+            'date' => Carbon::parse($transaction->date)->format("d/m/Y"),
             'transaction_type' => $transaction->transaction_type,
         ];
     }

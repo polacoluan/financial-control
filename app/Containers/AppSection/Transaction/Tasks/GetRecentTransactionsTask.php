@@ -27,6 +27,7 @@ class GetRecentTransactionsTask extends ParentTask
             )
             ->orderByDesc('date')
             ->limit(5)
-            ->get();
+            ->get()
+            ->toArray();
     }
 }
