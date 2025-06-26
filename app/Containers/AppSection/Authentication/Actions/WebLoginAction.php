@@ -35,7 +35,6 @@ class WebLoginAction extends ParentAction
 
         $loggedIn = Auth::guard('web')->attempt($credentials, $sanitizedData['remember']);
 
-        // TODO: This doesnt feels right. Maybe we should move this to controller?
         // You know, the controller should be the one who decides where to redirect the user.
         if ($loggedIn) {
             session()->regenerate();

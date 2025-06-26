@@ -16,7 +16,6 @@ final class MakeRefreshCookieTaskTest extends UnitTestCase
 
         $result = $task->run($refreshToken);
 
-        // TODO: this should cover more cases
         $this->assertSame($result->getName(), 'refreshToken');
         $this->assertSame($result->getValue(), $refreshToken);
         $this->assertSame($result->isHttpOnly(), true);

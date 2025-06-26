@@ -11,7 +11,7 @@ use Prettus\Repository\Exceptions\RepositoryException;
 class GetRecentTransactionsAction extends ParentAction
 {
     public function __construct(
-        private readonly GetRecentTransactionsTask $GetRecentTransactionsTask,
+        private readonly GetRecentTransactionsTask $getRecentTransactionsTask,
     ) {}
 
     /**
@@ -20,6 +20,6 @@ class GetRecentTransactionsAction extends ParentAction
      */
     public function run(GetRecentTransactionsRequest $request): mixed
     {
-        return $this->GetRecentTransactionsTask->run();
+        return $this->getRecentTransactionsTask->run();
     }
 }

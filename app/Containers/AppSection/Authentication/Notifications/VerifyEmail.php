@@ -32,7 +32,6 @@ final class VerifyEmail extends ParentNotification implements ShouldQueue
             ->line('If you did not create an account, no further action is required.');
     }
 
-    // TODO: This method might not have been tested properly. Please review it.
     private function createUrl(User $notifiable): string
     {
         $user_id = config('apiato.hash-id') ? $notifiable->getHashedKey() : $notifiable->getKey();

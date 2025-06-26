@@ -9,13 +9,10 @@ use Illuminate\Support\Str;
 class LoginFieldParser
 {
     /**
-     * Extract all matching login fields from the given data.
-     * The login fields are the fields that are allowed to be used as login credentials.
-     * The login fields are defined in the config file.
-     * The login fields are extracted from the given data.
-     * The login fields are returned as an array of IncomingLoginField objects.
-     * The login fields are returned in the order they are defined in the config file.
-     * TODO: update this docblock.
+     * Extract and validate all allowed login fields from the given request data.
+     * Allowed field names are defined in `appSection-authentication.login.fields`
+     * and are returned in the same order. Each result is wrapped in an
+     * `IncomingLoginField` value object.
      *
      * @param array<string, mixed> $data
      *
@@ -98,7 +95,6 @@ class LoginFieldParser
         return null !== $loginFieldValue;
     }
 
-    // TODO: I think this should be moved to a separate class
     public static function mergeValidationRules(array $rules): array
     {
         /**
