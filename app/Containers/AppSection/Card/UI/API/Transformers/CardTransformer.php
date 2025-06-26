@@ -16,6 +16,9 @@ class CardTransformer extends ParentTransformer
         return [
             'object' => $card->getResourceKey(),
             'id' => $card->getHashedKey(),
+            'card' => $card->card,
+            'description' => $card->description,
+            'is_default' => $card->is_default ? true : false,
             'created_at' => $card->created_at,
             'updated_at' => $card->updated_at,
             'readable_created_at' => $card->created_at->diffForHumans(),

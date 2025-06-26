@@ -16,6 +16,10 @@ class TypeTransformer extends ParentTransformer
         return [
             'object' => $type->getResourceKey(),
             'id' => $type->getHashedKey(),
+            'type' => $type->type,
+            'description' => $type->description,
+            'is_default' => $type->is_default ? true : false,
+            'installments' => $type->installments ? true : false,
             'created_at' => $type->created_at,
             'updated_at' => $type->updated_at,
             'readable_created_at' => $type->created_at->diffForHumans(),

@@ -22,7 +22,15 @@ class DeleteCategoryRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'id' => 'required|exists:categories,id',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'id.required' => 'O identificador é obrigatório',
+            'id.exists' => 'Registro não encontrado',
         ];
     }
 

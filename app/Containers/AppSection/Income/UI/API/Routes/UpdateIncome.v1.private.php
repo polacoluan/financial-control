@@ -25,6 +25,6 @@
 use App\Containers\AppSection\Income\UI\API\Controllers\UpdateIncomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::patch('incomes/{id}', UpdateIncomeController::class)
+Route::patch('income/{id}', UpdateIncomeController::class)
     ->middleware(['auth:api']);
 

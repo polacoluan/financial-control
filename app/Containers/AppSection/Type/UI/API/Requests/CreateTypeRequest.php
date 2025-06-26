@@ -11,18 +11,21 @@ class CreateTypeRequest extends ParentRequest
         'roles' => null,
     ];
 
-    protected array $decode = [
-        // 'id',
-    ];
-
-    protected array $urlParameters = [
-        // 'id',
-    ];
-
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'type' => 'required|string',
+            'description' => 'required|string',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'type.required' => 'O tipo é obrigatório',
+            'type.string' => 'O tipo deve ser do tipo texto',
+            'description.required' => 'A descrição do tipo é obrigatória',
+            'description.string' => 'A descrição do tipo deve ser do tipo texto'
         ];
     }
 

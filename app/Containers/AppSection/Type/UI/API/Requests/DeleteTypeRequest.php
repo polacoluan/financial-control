@@ -22,7 +22,15 @@ class DeleteTypeRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'id' => 'required|exists:types,id',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'id.required' => 'O identificado de tipo é obrigatório',
+            'id.exists' => 'Nenhum registro encontrado'
         ];
     }
 

@@ -23,7 +23,8 @@ class CreateCategoryAction extends ParentAction
     public function run(CreateCategoryRequest $request): Category
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            "category",
+            "description"
         ]);
 
         return $this->createCategoryTask->run($data);

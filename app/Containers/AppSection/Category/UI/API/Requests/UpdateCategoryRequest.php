@@ -22,7 +22,18 @@ class UpdateCategoryRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'id' => 'required',
+            'category' => 'string',
+            'description' => 'string'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'id.required' => 'O identificador é obrigatório',
+            'category.string' => 'A categoria deve ser do tipo texto',
+            'description' => 'A descrição deve ser do tipo texto',
         ];
     }
 

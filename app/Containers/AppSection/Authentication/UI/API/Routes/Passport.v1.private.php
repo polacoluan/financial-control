@@ -15,8 +15,8 @@ Route::group([
     'prefix' => config('passport.path', 'oauth'),
 ], static function () use ($guard) {
     Route::post('/token', [AccessTokenController::class, 'issueToken'])
-        ->name('token')
-        ->middleware(['throttle']);
+        ->name('token');
+        // ->middleware(['throttle']);
 
     Route::middleware(['web', $guard ? 'auth:' . $guard : 'auth'])->group(function () {
         Route::post('/token/refresh', [TransientTokenController::class, 'refresh'])

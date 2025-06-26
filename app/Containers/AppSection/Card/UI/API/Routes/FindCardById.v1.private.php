@@ -2,10 +2,10 @@
 
 /**
  * @apiGroup           Card
- * @apiName            Invoke
+ * @apiName            FindCardById
  *
- * @api                {GET} /v1/cards/:id Invoke
- * @apiDescription     Endpoint description here...
+ * @api                {GET} /v1/cards/:id Find Card By Id
+ * @apiDescription     Find a Card By Id
  *
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated ['permissions' => '', 'roles' => '']
@@ -13,12 +13,23 @@
  * @apiHeader          {String} accept=application/json
  * @apiHeader          {String} authorization=Bearer
  *
- * @apiParam           {String} parameters here...
+ * @apiParam           {String} id Identifier of the Card
  *
  * @apiSuccessExample  {json} Success-Response:
  * HTTP/1.1 200 OK
  * {
- *     // Insert the response of the request here...
+ *     "data": {
+ *         "object": "Card",
+ *         "id": "l5",
+ *         "created_at": "2024-12-20T17:43:12.000000Z",
+ *         "updated_at": "2024-12-20T17:43:12.000000Z",
+ *         "readable_created_at": "1 second ago",
+ *         "readable_updated_at": "1 second ago"
+ *     },
+ *     "meta": {
+ *         "include": [],
+ *         "custom": []
+ *     }
  * }
  */
 

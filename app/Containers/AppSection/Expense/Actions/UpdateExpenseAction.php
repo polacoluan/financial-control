@@ -25,7 +25,14 @@ class UpdateExpenseAction extends ParentAction
     public function run(UpdateExpenseRequest $request): Expense
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'expense', 
+            'description', 
+            'amount', 
+            'date', 
+            'installments', 
+            'category_id', 
+            'type_id', 
+            'card_id'
         ]);
 
         return $this->updateExpenseTask->run($data, $request->id);

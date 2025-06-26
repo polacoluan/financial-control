@@ -25,7 +25,10 @@ class UpdateIncomeAction extends ParentAction
     public function run(UpdateIncomeRequest $request): Income
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'income',
+            'description',
+            'amount',
+            'date',
         ]);
 
         return $this->updateIncomeTask->run($data, $request->id);

@@ -10,13 +10,13 @@ return new class() extends Migration {
         Schema::create('expenses', static function (Blueprint $table) {
             $table->id();
             $table->string('expense');
-            $table->string('description');
+            $table->text('description');
             $table->double('amount');            
             $table->date('date');
-            $table->integer('installments');
+            $table->integer('installments')->nullable();
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('type_id')->constrained('types');
-            $table->foreignId('card_id')->constrained('cards');
+            $table->foreignId('card_id')->nullable()->constrained('cards');
             $table->timestamps();
         });
     }

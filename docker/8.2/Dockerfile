@@ -22,14 +22,22 @@ RUN apt-get update && apt-get install -y \
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs
 
-# Copy application code into the container
-WORKDIR /var/www/html
-COPY . .
+# Create sail user
+RUN useradd -ms /bin/bash sail
 
-# Set permissions
+# Set permissions (run as root)
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chown -R sail:sail /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Switch to the sail user
+USER sail
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy application code into the container
+COPY . .
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

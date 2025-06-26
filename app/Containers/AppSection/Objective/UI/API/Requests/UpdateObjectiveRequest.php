@@ -22,7 +22,10 @@ class UpdateObjectiveRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // 'id' => 'required',
+            'objective' => 'sometimes|required|string|max:255',
+            'description' => 'sometimes|required|string',
+            'target_value' => 'nullable|numeric|min:0',
+            'saved_amount' => 'nullable|numeric|min:0',
         ];
     }
 

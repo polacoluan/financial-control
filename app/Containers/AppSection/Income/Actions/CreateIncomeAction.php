@@ -23,7 +23,10 @@ class CreateIncomeAction extends ParentAction
     public function run(CreateIncomeRequest $request): Income
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'income',
+            'description',
+            'amount',
+            'date'
         ]);
 
         return $this->createIncomeTask->run($data);

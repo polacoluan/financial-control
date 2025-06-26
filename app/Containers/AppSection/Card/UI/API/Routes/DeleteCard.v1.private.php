@@ -2,10 +2,10 @@
 
 /**
  * @apiGroup           Card
- * @apiName            Invoke
+ * @apiName            DeleteCard
  *
- * @api                {DELETE} /v1/cards/:id Invoke
- * @apiDescription     Endpoint description here...
+ * @api                {DELETE} /v1/cards/:id Delete Card
+ * @apiDescription     Delete a Card
  *
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated ['permissions' => '', 'roles' => '']
@@ -13,12 +13,11 @@
  * @apiHeader          {String} accept=application/json
  * @apiHeader          {String} authorization=Bearer
  *
- * @apiParam           {String} parameters here...
+ * @apiParam           {String} id Identifier of the Card
  *
  * @apiSuccessExample  {json} Success-Response:
- * HTTP/1.1 200 OK
+ * HTTP/1.1 204 No Content
  * {
- *     // Insert the response of the request here...
  * }
  */
 

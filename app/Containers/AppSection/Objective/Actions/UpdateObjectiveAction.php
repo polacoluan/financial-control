@@ -14,8 +14,7 @@ class UpdateObjectiveAction extends ParentAction
 {
     public function __construct(
         private readonly UpdateObjectiveTask $updateObjectiveTask,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws UpdateResourceFailedException
@@ -25,7 +24,10 @@ class UpdateObjectiveAction extends ParentAction
     public function run(UpdateObjectiveRequest $request): Objective
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'objective',
+            'description',
+            'target_value',
+            'saved_amount',
         ]);
 
         return $this->updateObjectiveTask->run($data, $request->id);

@@ -1,20 +1,26 @@
 services:
-    app:
+    laravel.test:
         build:
-            context: .
+            context: ./docker/8.2
             dockerfile: Dockerfile
-        container_name: laravel_app
-        restart: unless-stopped
-        user: '${MY_UID:-1000}:${MY_GID:-1000}'
-        working_dir: /var/www/html
-        volumes:
-            - '.:/var/www/html'
+            args:
+                WWWGROUP: "${WWWGROUP:-1000}"
+                NODE_VERSION: "${NODE_VERSION:-18}"
+        image: sail-8.2/app
         ports:
-            - '80:8000'
+            - "80:8000"
+        environment:
+            WWWUSER: "${WWWUSER:-1000}"
+            LARAVEL_SAIL: 1
+        volumes:
+            - ".:/var/www/html"
+            - "./vendor:/var/www/html/vendor"
+            - "./node_modules:/var/www/html/node_modules"
         depends_on:
             - mysql
         networks:
             - laravel_network
+
     mysql:
         image: 'mysql:8.0'
         container_name: mysql_container
@@ -30,9 +36,11 @@ services:
             - '3306:3306'
         networks:
             - laravel_network
+
 networks:
     laravel_network:
         driver: bridge
+
 volumes:
     mysql_data: null
     sail-mysql:

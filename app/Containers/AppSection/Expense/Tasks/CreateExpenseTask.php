@@ -25,8 +25,8 @@ class CreateExpenseTask extends ParentTask
             ExpenseCreated::dispatch($expense);
 
             return $expense;
-        } catch (\Exception) {
-            throw new CreateResourceFailedException();
+        } catch (\Exception $e) {
+            throw new CreateResourceFailedException($e->getMessage());
         }
     }
 }
