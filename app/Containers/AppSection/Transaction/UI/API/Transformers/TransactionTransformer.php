@@ -15,7 +15,7 @@ class TransactionTransformer extends ParentTransformer
     {
         return [
             'name' => $transaction->name,
-            'amount' => (float) $transaction->amount,
+            'amount' => number_format($transaction->amount, 2, ',', '.'),
             'date' => Carbon::parse($transaction->date)->format("d/m/Y"),
             'transaction_type' => $transaction->transaction_type,
         ];

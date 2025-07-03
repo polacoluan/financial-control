@@ -12,8 +12,7 @@ class ListExpensesTask extends ParentTask
 {
     public function __construct(
         private readonly ExpenseRepository $repository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws CoreInternalErrorException
@@ -21,7 +20,7 @@ class ListExpensesTask extends ParentTask
      */
     public function run(): mixed
     {
-        $result = $this->repository->addRequestCriteria()->paginate();
+        $result = $this->repository->orderBy('date', 'desc')->addRequestCriteria()->paginate();
         ExpensesListed::dispatch($result);
 
         return $result;

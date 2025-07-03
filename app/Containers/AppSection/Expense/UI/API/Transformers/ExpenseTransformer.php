@@ -4,6 +4,7 @@ namespace App\Containers\AppSection\Expense\UI\API\Transformers;
 
 use App\Containers\AppSection\Expense\Models\Expense;
 use App\Ship\Parents\Transformers\Transformer as ParentTransformer;
+use Carbon\Carbon;
 
 class ExpenseTransformer extends ParentTransformer
 {
@@ -18,7 +19,8 @@ class ExpenseTransformer extends ParentTransformer
             'id' => $expense->getHashedKey(),
             'expense' => $expense->expense,
             'description' => $expense->description,
-            'amount' => $expense->amount,
+            'amount' => number_format($expense->amount, '2', ",", "."),
+            'readable_date' => Carbon::parse($expense->date)->format("d/m/Y"),
             'date' => $expense->date,
             'category_id' => $expense->category->getHashedKey(),
             'category' => $expense->category->category,
