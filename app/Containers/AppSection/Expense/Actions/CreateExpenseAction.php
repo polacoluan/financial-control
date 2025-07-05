@@ -6,6 +6,7 @@ use Apiato\Core\Exceptions\IncorrectIdException;
 use App\Containers\AppSection\Expense\Models\Expense;
 use App\Containers\AppSection\Expense\Tasks\CreateExpenseTask;
 use App\Containers\AppSection\Expense\UI\API\Requests\CreateExpenseRequest;
+use App\Containers\AppSection\Installment\Tasks\CreateInstallmentTask;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Actions\Action as ParentAction;
 use Carbon\Carbon;
@@ -14,13 +15,8 @@ class CreateExpenseAction extends ParentAction
 {
     public function __construct(
         private readonly CreateExpenseTask $createExpenseTask,
-    ) {
-    }
-
-    /**
-     * @throws CreateResourceFailedException
-     * @throws IncorrectIdException
-     */
+        private readonly CreateInstallmentTask $createInstallmentTask
+    ) {}
     public function run(CreateExpenseRequest $request): Expense
     {
         $data = $request->sanitizeInput([
@@ -36,11 +32,16 @@ class CreateExpenseAction extends ParentAction
 
         if ($data['installments'] > 1) {
 
-            $data['amount'] = $data['amount'] / $data['installments'];
-            
-            for ($i = 0; $i < $data['installments']; $i++) {
-                $data['date'] = Carbon::parse($data['date'])->addMonths($i);
+            $installment = $this->createInstallmentTask->run(['installment' => $data['expense'], 'installments_quantity' => $data['installments']]);
 
+            $data['amount'] = $data['amount'] / $data['installments'];
+            $data['installment_id'] = $installment->id;
+            $installments = $data['installments'];
+            $date = $data['date'];
+
+            for ($i = 0; $i < $installments; $i++) {
+                $data['date'] = Carbon::parse($date)->addMonths($i);
+                $data['installments'] = $i + 1;
                 $expenses[] = $this->createExpenseTask->run($data);
             }
 
