@@ -8,6 +8,7 @@ class Installment extends ParentModel
 {
     protected $fillable = [
         'installment',
+        'installments_quantity'
     ];
     protected $primaryKey = "installment_id";
 }

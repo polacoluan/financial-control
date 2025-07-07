@@ -21,5 +21,6 @@ class CategorySeeder extends ParentSeeder
         Category::create(['category' => 'Passeios', 'description' => 'Entradas de Estabelecimentos, cervejas, bebidas, entre outros...']);
         Category::create(['category' => 'Perfume', 'description' => 'Perfumes, Desodorantes, entre outros...']);
         Category::create(['category' => 'Roupas', 'description' => 'Camisas, calças, tẽnis, cueca, meias, entre outros...']);
+        Category::create(['category' => 'Outros', 'description' => 'Outros...']);
     }
 }

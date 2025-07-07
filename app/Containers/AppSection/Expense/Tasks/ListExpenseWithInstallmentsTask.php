@@ -7,7 +7,7 @@ use App\Containers\AppSection\Expense\Data\Repositories\ExpenseRepository;
 use App\Ship\Parents\Tasks\Task as ParentTask;
 use Prettus\Repository\Exceptions\RepositoryException;
 
-class GetExpenseWithInstallmentsTask extends ParentTask
+class ListExpenseWithInstallmentsTask extends ParentTask
 {
     public function __construct(
         private readonly ExpenseRepository $repository,
@@ -22,8 +22,8 @@ class GetExpenseWithInstallmentsTask extends ParentTask
         return $this->repository
             ->whereYear('date', $year)
             ->whereMonth('date', $month)
-            ->where('installment_id', '<>', null)
-            ->join('installments', 'expenses.id', '=', 'installments.installment_id')
+            ->where('expenses.installment_id', '<>', null)
+            ->join('installments', 'expenses.installment_id', '=', 'installments.installment_id')
             ->get();
     }
 }

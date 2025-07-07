@@ -4,7 +4,7 @@ namespace App\Containers\AppSection\Expense\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request as ParentRequest;
 
-class GetExpenseWithInstallmentsRequest extends ParentRequest
+class ListExpenseWithInstallmentsRequest extends ParentRequest
 {
     protected array $access = [
         'permissions' => null,

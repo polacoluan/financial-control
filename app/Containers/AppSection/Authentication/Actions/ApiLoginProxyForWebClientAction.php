@@ -16,8 +16,7 @@ class ApiLoginProxyForWebClientAction extends ParentAction
     public function __construct(
         private readonly CallOAuthServerTask $callOAuthServerTask,
         private readonly MakeRefreshTokenCookieTask $makeRefreshTokenCookieTask,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws LoginFailedException

@@ -34,8 +34,7 @@ class CreateExpenseAction extends ParentAction
 
             $installment = $this->createInstallmentTask->run(['installment' => $data['expense'], 'installments_quantity' => $data['installments']]);
 
-            $data['amount'] = $data['amount'] / $data['installments'];
-            $data['installment_id'] = $installment->id;
+            $data['installment_id'] = $installment->installment_id;
             $installments = $data['installments'];
             $date = $data['date'];
 

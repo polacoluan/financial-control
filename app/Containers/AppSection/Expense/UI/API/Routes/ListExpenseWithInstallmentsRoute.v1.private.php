@@ -22,9 +22,8 @@
  * }
  */
 
-use App\Containers\AppSection\Expense\UI\API\Controllers\GetExpenseWithInstallmentsController;
+use App\Containers\AppSection\Expense\UI\API\Controllers\ListExpenseWithInstallmentsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('expense-with-installments/{year}/{month}', GetExpenseWithInstallmentsController::class)
+Route::get('expenses/with-installments/{year}/{month}', ListExpenseWithInstallmentsController::class)
     ->middleware(['auth:api']);
-

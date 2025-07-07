@@ -10,14 +10,15 @@ use App\Ship\Parents\Models\Model as ParentModel;
 class Expense extends ParentModel
 {
     protected $fillable = [
-        'expense', 
-        'description', 
-        'amount', 
-        'date', 
-        'installments', 
-        'category_id', 
-        'type_id', 
-        'card_id'
+        'expense',
+        'description',
+        'amount',
+        'date',
+        'installments',
+        'category_id',
+        'type_id',
+        'card_id',
+        'installment_id'
     ];
 
     public function category()
