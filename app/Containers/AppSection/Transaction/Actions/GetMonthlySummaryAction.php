@@ -29,7 +29,7 @@ class GetMonthlySummaryAction extends ParentAction
 
         $totalExpenses = 0;
         foreach ($expenses as $expense) {
-            $monthlyAmount = $expense->installments > 1 ? $expense->amount / $expense->installments : $expense->amount;
+            $monthlyAmount = $expense->amount;
             $totalExpenses += $monthlyAmount;
         }
 
