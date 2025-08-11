@@ -25,6 +25,5 @@
 use App\Containers\AppSection\Objective\UI\API\Controllers\UpdateObjectiveController;
 use Illuminate\Support\Facades\Route;
 
-Route::patch('objectives/{id}', UpdateObjectiveController::class)
+Route::put('objectives/{id}', UpdateObjectiveController::class)
     ->middleware(['auth:api']);
-

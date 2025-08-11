@@ -2,10 +2,10 @@
 
 /**
  * @apiGroup           Category
- * @apiName            GetTopCategoriesExpenses
+ * @apiName            GetTopCardExpenses
  *
- * @api                {GET} /v1/categories/top-expenses/{month}/{year} Get Top Categories Expenses
- * @apiDescription     Get the top 5 categories with highest expenses for a specific month and year, including percentage of total expenses
+ * @api                {GET} /v1/Card/top-expenses/{month}/{year} Get Top Card Expenses
+ * @apiDescription     Get the top 5 Card with highest expenses for a specific month and year, including percentage of total expenses
  *
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated ['permissions' => '', 'roles' => '']
@@ -36,8 +36,8 @@
  * }
  */
 
-use App\Containers\AppSection\Category\UI\API\Controllers\GetTopCategoriesExpensesController;
+use App\Containers\AppSection\Card\UI\API\Controllers\GetTopCardExpensesController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('categories/top/expenses', GetTopCategoriesExpensesController::class)
+Route::get('cards/top/expenses', GetTopCardExpensesController::class)
     ->middleware(['auth:api']);

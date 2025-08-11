@@ -25,5 +25,5 @@
 use App\Containers\AppSection\Transaction\UI\API\Controllers\GetMonthlySummaryController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('monthly-summary/{year}/{month}', [GetMonthlySummaryController::class, 'GetMonthlySummary'])
+Route::get('monthly-summary', [GetMonthlySummaryController::class, 'GetMonthlySummary'])
     ->middleware(['auth:api']);

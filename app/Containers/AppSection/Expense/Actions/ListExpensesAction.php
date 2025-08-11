@@ -12,8 +12,7 @@ class ListExpensesAction extends ParentAction
 {
     public function __construct(
         private readonly ListExpensesTask $listExpensesTask,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws CoreInternalErrorException

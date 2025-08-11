@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Containers\AppSection\Category\Tasks;
+namespace App\Containers\AppSection\Type\Tasks;
 
-use App\Containers\AppSection\Category\Data\Repositories\CategoryRepository;
+use App\Containers\AppSection\Type\Data\Repositories\TypeRepository;
 use App\Ship\Parents\Tasks\Task as ParentTask;
 use Illuminate\Support\Facades\DB;
 
-class GetTopCategoriesExpensesTask extends ParentTask
+class GetTopTypesExpensesTask extends ParentTask
 {
     public function __construct(
-        private readonly CategoryRepository $repository
+        private readonly TypeRepository $repository
     ) {}
 
     public function run(string $start, string $end): array
@@ -18,10 +18,10 @@ class GetTopCategoriesExpensesTask extends ParentTask
             ->whereBetween('date', [$start, $end])
             ->sum('amount') ?: 0;
 
-        return DB::table('categories')
+        return DB::table('types')
             ->select([
-                'categories.id',
-                'categories.description',
+                'types.id',
+                'types.description',
                 DB::raw('COALESCE(SUM(expenses.amount), 0) as total_expenses'),
                 DB::raw('CAST(
                     CASE 
@@ -32,11 +32,11 @@ class GetTopCategoriesExpensesTask extends ParentTask
                 AS UNSIGNED) as percentage')
             ])
             ->leftJoin('expenses', function ($join) use ($start, $end) {
-                $join->on('expenses.category_id', '=', 'categories.id')
+                $join->on('expenses.type_id', '=', 'types.id')
                     ->where('expenses.date', '>=', $start)
                     ->where('expenses.date', '<=', $end);
             })
-            ->groupBy('categories.id', 'categories.description')
+            ->groupBy('types.id', 'types.description')
             ->orderByDesc('total_expenses')
             ->limit(5)
             ->get()

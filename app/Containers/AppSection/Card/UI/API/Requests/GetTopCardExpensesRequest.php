@@ -1,15 +1,19 @@
 <?php
 
-namespace App\Containers\AppSection\Transaction\UI\API\Requests;
+namespace App\Containers\AppSection\Card\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request as ParentRequest;
 
-class GetRecentTransactionsRequest extends ParentRequest
+class GetTopCardExpensesRequest extends ParentRequest
 {
     protected array $access = [
         'permissions' => null,
         'roles' => null,
     ];
+
+    protected array $decode = [];
+
+    protected array $urlParameters = [];
 
     public function rules(): array
     {

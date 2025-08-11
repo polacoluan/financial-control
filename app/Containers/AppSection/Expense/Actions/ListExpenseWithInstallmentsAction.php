@@ -14,15 +14,11 @@ class ListExpenseWithInstallmentsAction extends ParentAction
         private readonly ListExpenseWithInstallmentsTask $GetExpenseWithInstallmentsTask,
     ) {}
 
-    /**
-     * @throws CoreInternalErrorException
-     * @throws RepositoryException
-     */
     public function run(ListExpenseWithInstallmentsRequest $request): mixed
     {
         return $this->GetExpenseWithInstallmentsTask->run(
-            (int) $request->year,
-            (int) $request->month
+            (string) $request->start,
+            (string) $request->end
         );
     }
 }

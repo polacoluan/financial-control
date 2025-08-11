@@ -16,17 +16,26 @@ class ListExpensesByMonthYearAndTypeRequest extends ParentRequest
     ];
 
     protected array $urlParameters = [
-        'year',
-        'month',
-        'type_id',
+        'type_id'
     ];
 
     public function rules(): array
     {
         return [
             'type_id' => 'required|exists:types,id',
-            'month' => 'required|integer|between:1,12',
-            'year' => 'required|integer|min:2000',
+            'start' => 'required|date',
+            'end' => 'required|date|after_or_equal:start',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'start.required' => 'A data de início é obrigatória.',
+            'start.date'     => 'A data de início deve ser uma data válida.',
+            'end.required'   => 'A data de término é obrigatória.',
+            'end.date'       => 'A data de término deve ser uma data válida.',
+            'end.after'      => 'A data de término deve ser posterior à data de início.',
         ];
     }
 

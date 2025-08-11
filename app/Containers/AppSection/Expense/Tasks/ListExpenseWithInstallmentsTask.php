@@ -17,11 +17,11 @@ class ListExpenseWithInstallmentsTask extends ParentTask
      * @throws CoreInternalErrorException
      * @throws RepositoryException
      */
-    public function run(int $year, int $month): mixed
+    public function run(string $start, string $end): mixed
     {
         return $this->repository
-            ->whereYear('date', $year)
-            ->whereMonth('date', $month)
+            ->where('date', '>=', $start)
+            ->where('date', '<=', $end)
             ->where('expenses.installment_id', '<>', null)
             ->join('installments', 'expenses.installment_id', '=', 'installments.installment_id')
             ->get();

@@ -7,7 +7,7 @@ use App\Containers\AppSection\Income\Data\Repositories\IncomeRepository;
 use App\Ship\Parents\Tasks\Task as ParentTask;
 use Prettus\Repository\Exceptions\RepositoryException;
 
-class ListIncomesByMonthTask extends ParentTask
+class ListIncomesByRangeDateTask extends ParentTask
 {
     public function __construct(
         private readonly IncomeRepository $repository,
@@ -17,8 +17,8 @@ class ListIncomesByMonthTask extends ParentTask
      * @throws CoreInternalErrorException
      * @throws RepositoryException
      */
-    public function run($month): mixed
+    public function run(string $start, string  $end): mixed
     {
-        return $this->repository->whereMonth('date', $month)->get();
+        return $this->repository->where('date', '>=', $start)->where('date', '<=', $end)->get();
     }
 }

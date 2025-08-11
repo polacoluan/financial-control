@@ -7,7 +7,7 @@ use App\Containers\AppSection\Expense\Data\Repositories\ExpenseRepository;
 use App\Ship\Parents\Tasks\Task as ParentTask;
 use Prettus\Repository\Exceptions\RepositoryException;
 
-class ListExpensesByMonthTask extends ParentTask
+class ListExpensesByRangeDateTask extends ParentTask
 {
     public function __construct(
         private readonly ExpenseRepository $repository,
@@ -17,8 +17,8 @@ class ListExpensesByMonthTask extends ParentTask
      * @throws CoreInternalErrorException
      * @throws RepositoryException
      */
-    public function run($year, $month): mixed
+    public function run(string $start, string $end): mixed
     {
-        return $this->repository->whereYear('date', $year)->whereMonth('date', $month)->get();
+        return $this->repository->where('date', '>=', $start)->where('date', '<=', $end)->get();
     }
 }

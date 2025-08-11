@@ -31,8 +31,8 @@ class ExpenseTransformer extends ParentTransformer
             'installments' => $expense->installments,
             'created_at' => $expense->created_at,
             'updated_at' => $expense->updated_at,
-            'readable_created_at' => $expense->created_at->diffForHumans(),
-            'readable_updated_at' => $expense->updated_at->diffForHumans(),
+            'readable_created_at' => Carbon::parse($expense->created_at)->format('d/m/Y H:i:s'),
+            'readable_updated_at' => Carbon::parse($expense->updated_at)->format('d/m/Y H:i:s'),
         ];
     }
 }

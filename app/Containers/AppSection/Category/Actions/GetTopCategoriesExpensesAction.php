@@ -15,8 +15,8 @@ class GetTopCategoriesExpensesAction extends ParentAction
     public function run(GetTopCategoriesExpensesRequest $request): array
     {
         return $this->getTopCategoriesExpensesTask->run(
-            (int) $request->month,
-            (int) $request->year
+            (string) $request->start,
+            (string) $request->end
         );
     }
 }

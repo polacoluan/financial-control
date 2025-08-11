@@ -20,6 +20,6 @@ class GetRecentTransactionsAction extends ParentAction
      */
     public function run(GetRecentTransactionsRequest $request): mixed
     {
-        return $this->GetRecentTransactionsTask->run();
+        return $this->GetRecentTransactionsTask->run($request);
     }
 }

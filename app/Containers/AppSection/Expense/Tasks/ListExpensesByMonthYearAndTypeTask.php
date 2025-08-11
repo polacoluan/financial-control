@@ -17,11 +17,11 @@ class ListExpensesByMonthYearAndTypeTask extends ParentTask
      * @throws CoreInternalErrorException
      * @throws RepositoryException
      */
-    public function run(int $year, int $month, int $typeId): mixed
+    public function run(string $start, string $end, int $typeId): mixed
     {
         return $this->repository
-            ->whereYear('date', $year)
-            ->whereMonth('date', $month)
+            ->where('date', '>=', $start)
+            ->where('date', '<=', $end)
             ->where('type_id', $typeId)
             ->get();
     }

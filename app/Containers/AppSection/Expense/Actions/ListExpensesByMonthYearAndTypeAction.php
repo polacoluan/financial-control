@@ -21,8 +21,8 @@ class ListExpensesByMonthYearAndTypeAction extends ParentAction
     public function run(ListExpensesByMonthYearAndTypeRequest $request): mixed
     {
         return $this->listExpensesByMonthYearAndTypeTask->run(
-            (int) $request->year,
-            (int) $request->month,
+            (string) $request->start,
+            (string) $request->end,
             (int) $request->type_id
         );
     }

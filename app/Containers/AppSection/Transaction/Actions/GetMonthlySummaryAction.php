@@ -4,8 +4,8 @@ namespace App\Containers\AppSection\Transaction\Actions;
 
 use Apiato\Core\Exceptions\CoreInternalErrorException;
 use App\Containers\AppSection\Transaction\UI\API\Requests\GetMonthlySummaryRequest;
-use App\Containers\AppSection\Expense\Tasks\ListExpensesByMonthTask;
-use App\Containers\AppSection\Income\Tasks\ListIncomesByMonthTask;
+use App\Containers\AppSection\Expense\Tasks\ListExpensesByRangeDateTask;
+use App\Containers\AppSection\Income\Tasks\ListIncomesByRangeDateTask;
 use App\Containers\AppSection\Objective\Tasks\GetTotalSavedAmountTask;
 use App\Ship\Parents\Actions\Action as ParentAction;
 use Prettus\Repository\Exceptions\RepositoryException;
@@ -13,8 +13,8 @@ use Prettus\Repository\Exceptions\RepositoryException;
 class GetMonthlySummaryAction extends ParentAction
 {
     public function __construct(
-        private readonly ListExpensesByMonthTask $listExpensesByMonthTask,
-        private readonly ListIncomesByMonthTask $listIncomesByMonthTask,
+        private readonly ListExpensesByRangeDateTask $ListExpensesByRangeDateTask,
+        private readonly ListIncomesByRangeDateTask $ListIncomesByRangeDateTask,
         private readonly GetTotalSavedAmountTask $getTotalSavedAmountTask,
     ) {}
 
@@ -24,8 +24,8 @@ class GetMonthlySummaryAction extends ParentAction
      */
     public function run(GetMonthlySummaryRequest $request): array
     {
-        $expenses = $this->listExpensesByMonthTask->run($request->year, $request->month);
-        $incomes = $this->listIncomesByMonthTask->run($request->month);
+        $expenses = $this->ListExpensesByRangeDateTask->run($request->start, $request->end);
+        $incomes = $this->ListIncomesByRangeDateTask->run($request->start, $request->end);
 
         $totalExpenses = 0;
         foreach ($expenses as $expense) {

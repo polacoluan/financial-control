@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @apiGroup           Expense
  * @apiName            ListExpensesByMonthYearAndType
@@ -26,5 +27,5 @@
 use App\Containers\AppSection\Expense\UI\API\Controllers\ListExpensesByMonthYearAndTypeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('expenses/by-type/{type_id}/{year}/{month}', ListExpensesByMonthYearAndTypeController::class)
+Route::get('expenses/by-type/{type_id}', ListExpensesByMonthYearAndTypeController::class)
     ->middleware(['auth:api']);
