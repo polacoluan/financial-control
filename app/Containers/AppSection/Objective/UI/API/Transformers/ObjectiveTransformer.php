@@ -17,9 +17,11 @@ class ObjectiveTransformer extends ParentTransformer
             'id' => $objective->getHashedKey(),
             'objective' => $objective->objective,
             'description' => $objective->description,
-            'target_value' => $objective->target_value,
-            'saved_amount' => $objective->saved_amount,
-            'created_at' => $objective->created_at,
+            'target_value' => number_format($objective->target_value, 2, ",", "."),
+            'saved_amount' => number_format($objective->saved_amount, 2, ",", "."),
+            'progress' => (
+                (($objective->saved_amount ?? 0) / max($objective->target_value ?? 0, 1))
+            ) * 100,
             'updated_at' => $objective->updated_at,
             'readable_created_at' => $objective->created_at->diffForHumans(),
             'readable_updated_at' => $objective->updated_at->diffForHumans(),
